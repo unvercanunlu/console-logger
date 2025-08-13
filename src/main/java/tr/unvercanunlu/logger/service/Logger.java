@@ -1,27 +1,12 @@
 package tr.unvercanunlu.logger.service;
 
 import java.util.function.Supplier;
+import tr.unvercanunlu.logger.constant.LogLevel;
 
 public interface Logger {
 
-  void info(String message, Object... parameters);
+  void log(LogLevel level, String message, Object... parameters);
 
-  void debug(String message, Object... parameters);
-
-  void error(String message, Object... parameters);
-
-  void error(String message, Throwable exception, Object... parameters);
-
-  void info(Supplier<String> messageSupplier);
-
-  void debug(Supplier<String> messageSupplier);
-
-  void error(Supplier<String> messageSupplier);
-
-  void error(Supplier<String> messageSupplier, Throwable exception);
-
-  boolean isDebugEnabled();
-
-  boolean isErrorEnabled();
+  void log(LogLevel level, Supplier<String> messageSupplier);
 
 }
