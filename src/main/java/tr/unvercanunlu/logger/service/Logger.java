@@ -14,6 +14,12 @@ public interface Logger {
   // lazy
   void log(LogLevel level, Supplier<String> messageSupplier);
 
+  default void printStackTrace(Throwable throwable) {
+    if (isEnabled(ERROR) && (throwable != null)) {
+      throwable.printStackTrace();
+    }
+  }
+
   default void info(String message, Object... parameters) {
     log(LogLevel.INFO, message, parameters);
   }
@@ -32,9 +38,7 @@ public interface Logger {
 
   default void error(String message, Throwable throwable, Object... parameters) {
     log(ERROR, message, parameters);
-    if (isEnabled(ERROR) && throwable != null) {
-      throwable.printStackTrace();
-    }
+    printStackTrace(throwable);
   }
 
   default void info(Supplier<String> messageSupplier) {
@@ -55,9 +59,7 @@ public interface Logger {
 
   default void error(Supplier<String> messageSupplier, Throwable throwable) {
     log(ERROR, messageSupplier);
-    if (isEnabled(ERROR) && throwable != null) {
-      throwable.printStackTrace();
-    }
+    printStackTrace(throwable);
   }
 
 }
