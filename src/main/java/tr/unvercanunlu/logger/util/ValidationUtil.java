@@ -16,7 +16,7 @@ public class ValidationUtil {
   }
 
   public static void checkMessage(String message) {
-    if ((message == null) || message.isEmpty()) {
+    if ((message == null) || message.isBlank()) {
       throw new IllegalArgumentException("Message missing!");
     }
   }

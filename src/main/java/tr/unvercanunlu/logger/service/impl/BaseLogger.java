@@ -1,19 +1,22 @@
 package tr.unvercanunlu.logger.service.impl;
 
-import static tr.unvercanunlu.logger.config.LogConfig.VALUE_PLACEHOLDER;
 import static tr.unvercanunlu.logger.config.LogConfig.isEnabled;
+import static tr.unvercanunlu.logger.util.ValidationUtil.checkLevel;
+import static tr.unvercanunlu.logger.util.ValidationUtil.checkMessage;
+import static tr.unvercanunlu.logger.util.ValidationUtil.checkMessageSupplier;
+import static tr.unvercanunlu.logger.util.ValidationUtil.checkSource;
 
 import java.util.function.Supplier;
 import tr.unvercanunlu.logger.constant.LogLevel;
 import tr.unvercanunlu.logger.service.Logger;
-import tr.unvercanunlu.logger.util.ValidationUtil;
+import tr.unvercanunlu.logger.util.TextUtil;
 
 public abstract class BaseLogger implements Logger {
 
   protected final Class<?> source;
 
   protected BaseLogger(Class<?> source) {
-    ValidationUtil.checkSource(source);
+    checkSource(source);
     this.source = source;
   }
 
@@ -26,17 +29,57 @@ public abstract class BaseLogger implements Logger {
       return message;
     }
 
-    String formattedMessage = message.replaceAll(VALUE_PLACEHOLDER, "%s");
+    StringBuilder builder = new StringBuilder();
 
-    return String.format(formattedMessage, parameters);
+    boolean opened = false;
+
+    int i = 0;
+    int j = 0;
+
+    while (i < message.length()) {
+      char current = message.charAt(i);
+
+      if (!opened) {
+        if (current != '{' && current != '}') {
+          builder.append(current);
+          i++;
+        } else if (current == '{') {
+          opened = true;
+          i++;
+        } else {
+          builder.append('}');
+          i++;
+        }
+      } else {
+        if (current == '}') {
+          if (j < parameters.length) {
+            String value = TextUtil.stringify(parameters[j++]);
+            builder.append(value);
+          } else {
+            builder.append("{}");
+          }
+          opened = false;
+          i++;
+        } else {
+          builder.append('{');
+          opened = false;
+        }
+      }
+    }
+
+    if (opened) {
+      builder.append('{');
+    }
+
+    return builder.toString();
   }
 
   protected abstract void doLog(LogLevel level, Supplier<String> messageSupplier);
 
   @Override
   public void log(LogLevel level, String message, Object... parameters) {
-    ValidationUtil.checkLevel(level);
-    ValidationUtil.checkMessage(message);
+    checkLevel(level);
+    checkMessage(message);
     if (isEnabled(level)) {
       doLog(level, () -> fillMessageWithParameters(message, parameters));
     }
@@ -44,8 +87,8 @@ public abstract class BaseLogger implements Logger {
 
   @Override
   public void log(LogLevel level, Supplier<String> messageSupplier) {
-    ValidationUtil.checkLevel(level);
-    ValidationUtil.checkMessageSupplier(messageSupplier);
+    checkLevel(level);
+    checkMessageSupplier(messageSupplier);
     if (isEnabled(level)) {
       doLog(level, messageSupplier);
     }
