@@ -1,7 +1,7 @@
-package tr.unvercanunlu.logger.util;
+package tr.unvercanunlu.console_logger.util;
 
 import java.util.function.Supplier;
-import tr.unvercanunlu.logger.constant.LogLevel;
+import tr.unvercanunlu.console_logger.constant.LogLevel;
 
 public class ValidationUtil {
 

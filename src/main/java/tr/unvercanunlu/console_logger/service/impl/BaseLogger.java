@@ -1,15 +1,15 @@
-package tr.unvercanunlu.logger.service.impl;
+package tr.unvercanunlu.console_logger.service.impl;
 
-import static tr.unvercanunlu.logger.config.LogConfig.isEnabled;
-import static tr.unvercanunlu.logger.util.ValidationUtil.checkLevel;
-import static tr.unvercanunlu.logger.util.ValidationUtil.checkMessage;
-import static tr.unvercanunlu.logger.util.ValidationUtil.checkMessageSupplier;
-import static tr.unvercanunlu.logger.util.ValidationUtil.checkSource;
+import static tr.unvercanunlu.console_logger.config.LogConfig.isEnabled;
+import static tr.unvercanunlu.console_logger.util.ValidationUtil.checkLevel;
+import static tr.unvercanunlu.console_logger.util.ValidationUtil.checkMessage;
+import static tr.unvercanunlu.console_logger.util.ValidationUtil.checkMessageSupplier;
+import static tr.unvercanunlu.console_logger.util.ValidationUtil.checkSource;
 
 import java.util.function.Supplier;
-import tr.unvercanunlu.logger.constant.LogLevel;
-import tr.unvercanunlu.logger.service.Logger;
-import tr.unvercanunlu.logger.util.TextUtil;
+import tr.unvercanunlu.console_logger.constant.LogLevel;
+import tr.unvercanunlu.console_logger.service.Logger;
+import tr.unvercanunlu.console_logger.util.TextUtil;
 
 public abstract class BaseLogger implements Logger {
 

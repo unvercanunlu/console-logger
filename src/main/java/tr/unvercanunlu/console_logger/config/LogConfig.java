@@ -1,11 +1,11 @@
-package tr.unvercanunlu.logger.config;
+package tr.unvercanunlu.console_logger.config;
 
-import static tr.unvercanunlu.logger.constant.LogLevel.DEBUG;
-import static tr.unvercanunlu.logger.constant.LogLevel.DEFAULT_LEVEL;
-import static tr.unvercanunlu.logger.util.ValidationUtil.checkLevel;
+import static tr.unvercanunlu.console_logger.constant.LogLevel.DEBUG;
+import static tr.unvercanunlu.console_logger.constant.LogLevel.DEFAULT_LEVEL;
+import static tr.unvercanunlu.console_logger.util.ValidationUtil.checkLevel;
 
 import java.time.format.DateTimeFormatter;
-import tr.unvercanunlu.logger.constant.LogLevel;
+import tr.unvercanunlu.console_logger.constant.LogLevel;
 
 public class LogConfig {
 

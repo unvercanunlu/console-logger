@@ -1,10 +1,10 @@
-package tr.unvercanunlu.logger.service;
+package tr.unvercanunlu.console_logger.service;
 
-import static tr.unvercanunlu.logger.config.LogConfig.isEnabled;
-import static tr.unvercanunlu.logger.constant.LogLevel.ERROR;
+import static tr.unvercanunlu.console_logger.config.LogConfig.isEnabled;
+import static tr.unvercanunlu.console_logger.constant.LogLevel.ERROR;
 
 import java.util.function.Supplier;
-import tr.unvercanunlu.logger.constant.LogLevel;
+import tr.unvercanunlu.console_logger.constant.LogLevel;
 
 public interface Logger {
 

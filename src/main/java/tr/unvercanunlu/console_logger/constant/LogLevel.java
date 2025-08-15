@@ -1,4 +1,4 @@
-package tr.unvercanunlu.logger.constant;
+package tr.unvercanunlu.console_logger.constant;
 
 public enum LogLevel {
 

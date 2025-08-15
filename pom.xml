@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>tr.unvercanunlu</groupId>
-  <artifactId>logger</artifactId>
+  <artifactId>console-logger</artifactId>
   <version>1.0</version>
 
   <packaging>jar</packaging>

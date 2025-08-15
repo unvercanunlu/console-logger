@@ -1,4 +1,4 @@
-package tr.unvercanunlu.logger.util;
+package tr.unvercanunlu.console_logger.util;
 
 import java.util.Arrays;
 import java.util.Collection;
