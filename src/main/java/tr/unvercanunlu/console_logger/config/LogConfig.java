@@ -5,6 +5,7 @@ import static tr.unvercanunlu.console_logger.constant.LogLevel.DEFAULT_LEVEL;
 import static tr.unvercanunlu.console_logger.util.ValidationUtil.checkLevel;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import tr.unvercanunlu.console_logger.constant.LogLevel;
 
 public class LogConfig {
@@ -24,10 +25,8 @@ public class LogConfig {
 
   public static boolean isEnabled(LogLevel level) {
     checkLevel(level);
-    LogLevel current = SELECTED_LEVEL;
-    if (current == null) {
-      current = DEFAULT_LEVEL;
-    }
+    LogLevel current = Optional.of(SELECTED_LEVEL)
+        .orElse(DEFAULT_LEVEL);
     return current.getThreshold() >= level.getThreshold();
   }
 

@@ -1,5 +1,10 @@
 package tr.unvercanunlu.console_logger.constant;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum LogLevel {
 
   ERROR(0),
@@ -10,13 +15,5 @@ public enum LogLevel {
   public static final LogLevel DEFAULT_LEVEL = INFO;
 
   private final int threshold;
-
-  LogLevel(int threshold) {
-    this.threshold = threshold;
-  }
-
-  public int getThreshold() {
-    return threshold;
-  }
 
 }
